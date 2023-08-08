@@ -1,0 +1,67 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Brand index{% endblock %}
+<style>
+    .name {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+
+    .description {
+        display: flex;
+        justify-content: center;
+    }
+
+    .countryoforigin {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    .logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    }
+</style>
+{% block body %}
+    <h1 Style="text-align: center;">Brand Manage</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th class="">Name</th>
+                <th>Description</th>
+                <th>Countryoforigin</th>
+                <th>Logo</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for brand in brands %}
+            <tr>
+                <td>{{ brand.id }}</td>
+                <td>{{ brand.name }}</td>
+                <td>{{ brand.description }}</td>
+                <td>{{ brand.countryoforigin }}</td>
+                <td>{{ brand.logo }}</td>
+                <td>
+                    <a href="{{ path('app_brand_show', {'id': brand.id}) }}">show</a>
+                    <a href="{{ path('app_brand_edit', {'id': brand.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_brand_new') }}">Create new</a>
+{% endblock %}

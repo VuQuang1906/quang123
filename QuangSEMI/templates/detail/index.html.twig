@@ -1,0 +1,195 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+
+    <title>Sixteen Clothing HTML Template</title>
+    <!-- Bootstrap core CSS -->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="../assets/css/fontawesome.css">
+    <link rel="stylesheet" href="../assets/css/templatemo-sixteen.css">
+    <link rel="stylesheet" href="../assets/css/owl.css">
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Additional Scripts -->
+    <script src="../assets/js/custom.js"></script>
+    <scripttab-pane src="../assets/js/owl.js"></scripttab-pane>
+    <script src="../assets/js/slick.js"></script>
+    <script src="../assets/js/isotope.js"></script>
+    <script src="../assets/js/accordions.js"></script>
+
+
+    <script language = "text/Javascript">
+        cleared[0] = cleared[1] = cleared[2] = 0; //set a cleared flag for each field
+        function clearField(t){                   //declaring the array outside of the
+            if(! cleared[t.id]){                      // function makes it static and global
+                cleared[t.id] = 1;  // you could use true and false, but that's more typing
+                t.value='';         // with more chance of typos
+                t.style.color='#fff';
+            }
+        }
+    </script>
+</head>
+{% block stylesheets %}
+    {{ encore_entry_link_tags('app') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+{% endblock %}
+</head>
+<body>
+{% block header %}
+    <header class="">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="http://127.0.0.1:8000/"><h2> <em>SHOES</em></h2></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="http://127.0.0.1:8000/">Home
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="http://127.0.0.1:8000/productuser">Products</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact.html">Contact Us</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+{% endblock %}
+{% block body %}
+        <style>
+            .container {
+                max-width: 960px;
+                margin: auto;
+                padding: 15px;
+            }
+            .product-card {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 20px;
+                border: 1px solid #ddd;
+                border-radius: 10px;
+                margin-bottom: 20px;
+                transition: all 0.5s;
+            }
+            .product-card img {
+                width: 100%;
+                height: auto;
+                margin-bottom: 20px;
+            }
+            .product-card .card-body {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+            }
+            .product-card .card-body .card-title {
+                font-size: 1.5rem;
+                margin-bottom: 10px;
+                text-align: center;
+            }
+            .product-card .card-body .card-text {
+                font-size: 1rem;
+                text-align: center;
+                margin-bottom: 10px;
+            }
+            .product-card .card-footer {
+                display: flex;
+                justify-content: center;
+                width: 100%;
+            }
+            .product-card .card-footer .addToCartBtn {
+                background-color: #007bff;
+                color: #fff;
+                padding: 10px 20px;
+                border: none;
+                cursor: pointer;
+                text-decoration: none;
+                transition: all 0.5s;
+            }
+            .product-card .card-footer .addToCartBtn:hover {
+                background-color: #0056b3;
+
+            }
+            .addToCartBtn {
+                background-color: #007bff;
+                color: #fff;
+                border: none;
+                border-radius: 5px;
+                padding: 5px 10px;
+                cursor: pointer;
+                display: block;
+                margin-left: auto;
+                margin-right: 0px;
+                margin-top: 20px;
+            }
+            .product-info {
+                margin-bottom: 20px;
+            }
+
+        </style>
+        <div class="container">
+            <div class="card">
+                <div class="container-fliud">
+                    <div class="wrapper row">
+                        <div class="preview col-md-6">
+                        </div>
+                        <div class="preview-pic tab-content">
+                            <div class="tab-pane active" id="pic-1">
+                                <img class="column"src="{{ asset('../image/' ~ product.getImage()) }}" alt="{{ product.getName() }}">
+                            </div>
+                        </div>
+                        <div class="details col-md-6">
+                            <div class="product-info">
+                                <h3 class="product-title">{{ product.name }}</h3>
+                                <p class="product-description">{{ product.description }}</p>
+                                <h4 class="price">Giá hiện tại: <span>{{ product.price }}$</span></h4>
+                            </div>
+                            <div class="action">
+                                <button class="addToCartBtn" type="button">Lien He</button>
+                                <button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+
+{% block footer %}
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="inner-content">
+{#                        <p>thêmmmmm.....#}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+{% endblock %}
+</body>
+</html>

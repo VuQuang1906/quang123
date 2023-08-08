@@ -1,0 +1,137 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <style>
+        .video-container {
+            max-width: 1500px;
+            margin: 0 auto;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .video-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .product-card {
+            transition: transform 0.9s;
+            border: 5px solid #ccc;
+            border-radius: 10px;
+            overflow: hidden;
+            border-color: black;
+            margin-bottom: 20px;
+            width: 300px; /* Adjust this to your desired card width */
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        .product-card .card-body {
+            padding: 10px;
+        }
+
+        .product-card .card-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .product-card .card-text {
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .product-card .card-footer {
+            font-size: 12px;
+            padding: 5px;
+            background-color: #f5f5f5;
+        }
+
+        .addToCartBtn {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .addToCartBtn:hover {
+            background-color: #0056b3;
+        }
+
+        .cart-item-image {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            margin-right: 20px;
+        }
+        .otherButton {
+            margin-left: 35px;
+    </style>
+    <!-- Banner Starts Here -->
+    <div class="banner header-text">
+        <div class="owl-banner owl-carousel">
+            <div class="banner-item-01">
+                <div class="text-content">
+                    <h4>Best Offer</h4>
+                    <h2>New Arrivals On Sale</h2>
+                </div>
+            </div>
+            <div class="banner-item-02">
+                <div class="text-content">
+                    <h4>Flash Deals</h4>
+                    <h2>Get your best products</h2>
+                </div>
+            </div>
+            <div class="banner-item-03">
+                <div class="text-content">
+                    <h4>Last Minute</h4>
+                    <h2>Grab last minute deals</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Banner Ends Here -->
+<div class="container">  <!--đóng gói nội dung trên trang web-->
+    <h2>Danh sach san pham</h2>
+    <div class="product-list"> <!--danh sách tất cả các sản phẩm.-->
+        {% for product in products %} <!--một vòng lặp.-->
+        <a href="{{ path('app_detail_show', {'id': product.getId()}) }}"> <!--một liên kết đến trang chi tiết của sản phẩm-->
+            <div class="product-card">
+                <img src="{{ asset('image/' ~ product.getImage()) }}" alt="{{ product.getName() }}">
+                <div class="card-body">                 <!--hien thi thuoc tinh của product-->
+                    <h5 class="card-title">{{ product.getName() }}</h5>
+                    <p class="card-text">Gia: {{ product.getPrice() }}$</p>
+                </div>
+                <div class="card-footer">
+                    <button class="addToCartBtn">Xem Chi Tiet</button>
+
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
